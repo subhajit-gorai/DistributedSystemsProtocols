@@ -1,0 +1,1600 @@
+(venv) subhajit@subhajit-ubuntu-20-4:~/PycharmProjects/pythonProject/DistributedSystem/MP2Raft2$ python3.9 -u raft_log_follower_failure_test.py -d 3 python3.9 -u raft.py
+193162.088376548 # Starting 3 processes
+193162.093074121 Waiting for a leader to be elected
+193162.135251043 0>STATE term="0"
+193162.135629067 0>STATE state="FOLLOWER"
+193162.135696551 0>STATE leader=null
+193162.135762741 update_state [0@None]: term[None]=0
+193162.135784641 update_state [0@0]: state[None]=FOLLOWER
+193162.135800467 update_state [0@0]: leader[None]=None
+193162.137821321 1>STATE term="0"
+193162.137911343 1>STATE state="FOLLOWER"
+193162.137969309 1>STATE leader=null
+193162.1380321 update_state [1@None]: term[None]=0
+193162.138052552 update_state [1@0]: state[None]=FOLLOWER
+193162.138067369 update_state [1@0]: leader[None]=None
+193162.14003846 2>STATE term="0"
+193162.140103953 2>STATE state="FOLLOWER"
+193162.140139491 2>STATE leader=null
+193162.140177952 update_state [2@None]: term[None]=0
+193162.140190248 update_state [2@0]: state[None]=FOLLOWER
+193162.140198403 update_state [2@0]: leader[None]=None
+193168.20357342 2>SEND 0 ${"term": 1, "candidate": 2, "last_log_index": -1, "last_log_term": -1, "msgSignature": 1}
+193168.203769049 2>SEND 1 ${"term": 1, "candidate": 2, "last_log_index": -1, "last_log_term": -1, "msgSignature": 1}
+193168.203990044 0<RECEIVE 2 ${"term": 1, "candidate": 2, "last_log_index": -1, "last_log_term": -1, "msgSignature": 1}
+193168.204107218 1<RECEIVE 2 ${"term": 1, "candidate": 2, "last_log_index": -1, "last_log_term": -1, "msgSignature": 1}
+193168.204366688 2>STATE term="1"
+193168.204626365 2>STATE state="CANDIDATE"
+193168.204813364 2>STATE leader=null
+193168.204998705 update_state [2@0]: term[None]=1
+193168.205053959 update_state [2@1]: state[None]=CANDIDATE
+193168.205094491 update_state [2@1]: leader[None]=None
+193168.205877331 1>SEND 2 ${"term": 1, "sender": 1, "response": true, "msgSignature": 2}
+193168.206139442 2<RECEIVE 1 ${"term": 1, "sender": 1, "response": true, "msgSignature": 2}
+193168.206321755 0>SEND 2 ${"term": 1, "sender": 0, "response": true, "msgSignature": 2}
+193168.206527206 2<RECEIVE 0 ${"term": 1, "sender": 0, "response": true, "msgSignature": 2}
+193168.207762685 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [], "commit_index": -1, "msgSignature": 4}
+193168.207902917 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [], "commit_index": -1, "msgSignature": 4}
+193168.208050048 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [], "commit_index": -1, "msgSignature": 4}
+193168.208152905 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [], "commit_index": -1, "msgSignature": 4}
+193168.208446739 2>STATE term="1"
+193168.208694817 2>STATE state="LEADER"
+193168.20884993 2>STATE leader="2"
+193168.209125561 update_state [2@1]: term[None]=1
+193168.209228577 update_state [2@1]: state[None]=LEADER
+193168.20928244 update_state [2@1]: leader[None]=2
+193168.209328009 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'2'}})
+193168.209716445 0>STATE term="1"
+193168.209962603 0>STATE state="FOLLOWER"
+193168.210196179 0>STATE leader=null
+193168.210413469 0>STATE term="1"
+193168.210518137 0>STATE state="FOLLOWER"
+193168.210563438 0>STATE leader="2"
+193168.210628256 1>STATE term="1"
+193168.210669077 1>STATE state="FOLLOWER"
+193168.210711143 1>STATE leader=null
+193168.210749855 1>STATE term="1"
+193168.2107868 1>STATE state="FOLLOWER"
+193168.210826876 1>STATE leader="2"
+193168.210907269 update_state [0@0]: term[None]=1
+193168.210929001 update_state [0@1]: state[None]=FOLLOWER
+193168.21095255 update_state [0@1]: leader[None]=None
+193168.210963766 update_state [0@1]: term[None]=1
+193168.210973841 update_state [0@1]: state[None]=FOLLOWER
+193168.210983887 update_state [0@1]: leader[None]=2
+193168.210993813 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '2'}})
+193168.211004276 update_state [1@0]: term[None]=1
+193168.211013751 update_state [1@1]: state[None]=FOLLOWER
+193168.211023488 update_state [1@1]: leader[None]=None
+193168.211033267 update_state [1@1]: term[None]=1
+193168.211042904 update_state [1@1]: state[None]=FOLLOWER
+193168.211052392 update_state [1@1]: leader[None]=2
+193168.211061864 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.211199749 # Successfully elected 2 for term 1
+193168.211265405 Committing ['JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk', 'eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY', 'nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME', 'iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8', 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+/home/subhajit/PycharmProjects/pythonProject/DistributedSystem/MP2Raft2/raft_log_follower_failure_test.py:24: RuntimeWarning: coroutine 'sleep' was never awaited
+  asyncio.sleep(0.5)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+193168.21443431 Waiting for leader to commit all 5
+193168.214575286 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": -1, "msgSignature": 5}
+193168.214606269 0>STATE term="1"
+193168.214671711 0>STATE state="FOLLOWER"
+193168.21472085 0>STATE leader="2"
+193168.214795097 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": -1, "msgSignature": 5}
+193168.214819167 1>STATE term="1"
+193168.21486008 1>STATE state="FOLLOWER"
+193168.214899589 1>STATE leader="2"
+193168.215122647 2<LOG JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk
+193168.215155339 2<LOG eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY
+193168.215171702 2<LOG nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME
+193168.21518648 2<LOG iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8
+193168.21520127 2<LOG EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g
+193168.215217087 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": -1, "msgSignature": 5}
+193168.215232962 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": -1, "msgSignature": 5}
+193168.215257005 update_state [0@1]: term[None]=1
+193168.215269411 update_state [0@1]: state[None]=FOLLOWER
+193168.215279937 update_state [0@1]: leader[None]=2
+193168.215290228 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.215300396 update_state [1@1]: term[None]=1
+193168.215309929 update_state [1@1]: state[None]=FOLLOWER
+193168.215319876 update_state [1@1]: leader[None]=2
+193168.215329547 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+client request to leader True 1
+client request to leader True 2
+client request to leader True 3
+client request to leader True 4
+client request to leader True 5
+193168.216403117 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk\n"], [1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY\n"], [1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME\n"], [1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8\n"], [1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g\n"]], "commit_index": -1, "msgSignature": 4}
+193168.216450584 2>STATE term="1"
+193168.216516775 2>STATE state="LEADER"
+193168.216591291 2>STATE leader="2"
+193168.216685071 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk\n"], [1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY\n"], [1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME\n"], [1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8\n"], [1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g\n"]], "commit_index": -1, "msgSignature": 4}
+193168.216717212 update_state [2@1]: term[None]=1
+193168.216732307 update_state [2@1]: state[None]=LEADER
+193168.216743179 update_state [2@1]: leader[None]=2
+193168.216753155 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.216824132 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk\n"], [1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY\n"], [1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME\n"], [1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8\n"], [1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g\n"]], "commit_index": -1, "msgSignature": 4}
+193168.216856936 2>STATE term="1"
+193168.21690357 2>STATE state="LEADER"
+193168.21694435 2>STATE leader="2"
+193168.2170157 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": -1, "prev_term": -1, "entries": [[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk\n"], [1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY\n"], [1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME\n"], [1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8\n"], [1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g\n"]], "commit_index": -1, "msgSignature": 4}
+193168.217046807 update_state [2@1]: term[None]=1
+193168.217059665 update_state [2@1]: state[None]=LEADER
+193168.217070879 update_state [2@1]: leader[None]=2
+193168.217080374 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.217531465 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193168.217579792 0>STATE term="1"
+193168.217656965 0>STATE state="FOLLOWER"
+193168.217723796 0>STATE leader="2"
+193168.217826548 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193168.217863516 update_state [0@1]: term[None]=1
+193168.217878805 update_state [0@1]: state[None]=FOLLOWER
+193168.217889582 update_state [0@1]: leader[None]=2
+193168.217900494 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.217978419 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193168.218012012 1>STATE term="1"
+193168.218061792 1>STATE state="FOLLOWER"
+193168.218106983 1>STATE leader="2"
+193168.21818701 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193168.218216285 update_state [1@1]: term[None]=1
+193168.21823122 update_state [1@1]: state[None]=FOLLOWER
+193168.2182442 update_state [1@1]: leader[None]=2
+193168.218256457 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.218333463 2>COMMITTED JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk 0
+193168.218353518 2>STATE term="1"
+193168.218401104 2>STATE state="LEADER"
+193168.218444602 2>STATE leader="2"
+193168.218504014 2>STATE log[1]=[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk"]
+193168.218600046 2>COMMITTED eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY 1
+193168.218620292 2>STATE term="1"
+193168.218663656 2>STATE state="LEADER"
+193168.218704815 2>STATE leader="2"
+193168.218759676 2>STATE log[2]=[1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY"]
+193168.218850278 2>COMMITTED nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME 2
+193168.218871174 2>STATE term="1"
+193168.218911183 2>STATE state="LEADER"
+193168.218958179 2>STATE leader="2"
+193168.219013487 2>STATE log[3]=[1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME"]
+193168.219067096 2>COMMITTED iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8 3
+193168.219085373 2>STATE term="1"
+193168.219126796 2>STATE state="LEADER"
+193168.219167165 2>STATE leader="2"
+193168.219220305 2>STATE log[4]=[1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8"]
+193168.219272466 2>COMMITTED EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g 4
+193168.219291264 2>STATE term="1"
+193168.219329883 2>STATE state="LEADER"
+193168.219368884 2>STATE leader="2"
+193168.219420189 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193168.219474627 2>STATE term="1"
+193168.219516462 2>STATE state="LEADER"
+193168.219554428 2>STATE leader="2"
+193168.219611789 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193168.219683789 update_state [2@1]: term[None]=1
+193168.219703097 update_state [2@1]: state[None]=LEADER
+193168.219716806 update_state [2@1]: leader[None]=2
+193168.219729316 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.219741496 update_state [2@1]: log[1]=[1, 'JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk']
+193168.219753836 update_state [2@1]: term[None]=1
+193168.219765766 update_state [2@1]: state[None]=LEADER
+193168.21977768 update_state [2@1]: leader[None]=2
+193168.219789488 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.219801709 update_state [2@1]: log[2]=[1, 'eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY']
+193168.219813968 update_state [2@1]: term[None]=1
+193168.219825492 update_state [2@1]: state[None]=LEADER
+193168.219837198 update_state [2@1]: leader[None]=2
+193168.219849017 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.219860683 update_state [2@1]: log[3]=[1, 'nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME']
+193168.219872592 update_state [2@1]: term[None]=1
+193168.219884072 update_state [2@1]: state[None]=LEADER
+193168.219895766 update_state [2@1]: leader[None]=2
+193168.21990722 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.219919038 update_state [2@1]: log[4]=[1, 'iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8']
+193168.219930683 update_state [2@1]: term[None]=1
+193168.219942284 update_state [2@1]: state[None]=LEADER
+193168.219953761 update_state [2@1]: leader[None]=2
+193168.219965028 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.219976572 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193168.21998852 update_state [2@1]: term[None]=1
+193168.220000112 update_state [2@1]: state[None]=LEADER
+193168.220011553 update_state [2@1]: leader[None]=2
+193168.220023051 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.220034781 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193168.22010475 2>STATE term="1"
+193168.220155312 2>STATE state="LEADER"
+193168.220198741 2>STATE leader="2"
+193168.220255898 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193168.220321164 update_state [2@1]: term[None]=1
+193168.220339017 update_state [2@1]: state[None]=LEADER
+193168.220352119 update_state [2@1]: leader[None]=2
+193168.220364251 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193168.220376907 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193169.209206973 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193169.209385395 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193169.209568353 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193169.20967802 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193169.211865467 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193169.211996308 0>COMMITTED JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk 0
+193169.212053974 0>STATE term="1"
+193169.212291386 0>STATE state="FOLLOWER"
+193169.21246039 0>STATE leader="2"
+193169.21276633 0>STATE log[1]=[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk"]
+193169.212994318 0>COMMITTED eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY 1
+193169.213061365 0>STATE term="1"
+193169.213280044 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193169.213317022 update_state [0@1]: term[None]=1
+193169.213334574 update_state [0@1]: state[None]=FOLLOWER
+193169.21334861 update_state [0@1]: leader[None]=2
+193169.213361924 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.213375154 update_state [0@1]: log[1]=[1, 'JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk']
+193169.213388227 update_state [0@1]: term[None]=1
+193169.213408924 0>STATE state="FOLLOWER"
+193169.213458505 0>STATE leader="2"
+193169.213521597 0>STATE log[2]=[1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY"]
+193169.213586409 0>COMMITTED nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME 2
+193169.213606617 0>STATE term="1"
+193169.213650499 0>STATE state="FOLLOWER"
+193169.213696842 0>STATE leader="2"
+193169.213756884 0>STATE log[3]=[1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME"]
+193169.213819665 0>COMMITTED iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8 3
+193169.21384078 0>STATE term="1"
+193169.213883724 0>STATE state="FOLLOWER"
+193169.213927379 0>STATE leader="2"
+193169.213985479 0>STATE log[4]=[1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8"]
+193169.214045871 0>COMMITTED EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g 4
+193169.214065848 0>STATE term="1"
+193169.214107193 0>STATE state="FOLLOWER"
+193169.214148449 0>STATE leader="2"
+193169.214212785 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193169.21428486 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193169.214318511 1>COMMITTED JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk 0
+193169.214338215 1>STATE term="1"
+193169.214381154 1>STATE state="FOLLOWER"
+193169.214424268 1>STATE leader="2"
+193169.214481476 1>STATE log[1]=[1, "JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk"]
+193169.214541567 1>COMMITTED eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY 1
+193169.2145623 1>STATE term="1"
+193169.21460323 1>STATE state="FOLLOWER"
+193169.21464502 1>STATE leader="2"
+193169.214701432 1>STATE log[2]=[1, "eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY"]
+193169.214762186 1>COMMITTED nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME 2
+193169.214782432 1>STATE term="1"
+193169.214823746 1>STATE state="FOLLOWER"
+193169.214871094 1>STATE leader="2"
+193169.214928529 1>STATE log[3]=[1, "nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME"]
+193169.214997411 1>COMMITTED iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8 3
+193169.215018154 1>STATE term="1"
+193169.215063805 1>STATE state="FOLLOWER"
+193169.215108068 1>STATE leader="2"
+193169.215169188 1>STATE log[4]=[1, "iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8"]
+193169.215234205 1>COMMITTED EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g 4
+193169.215254633 1>STATE term="1"
+193169.215297183 1>STATE state="FOLLOWER"
+193169.215340661 1>STATE leader="2"
+193169.215400544 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193169.215465505 1>STATE term="1"
+193169.215510642 1>STATE state="FOLLOWER"
+193169.215553761 1>STATE leader="2"
+193169.215616676 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193169.215715987 update_state [0@1]: state[None]=FOLLOWER
+193169.215738811 update_state [0@1]: leader[None]=2
+193169.215754891 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.215769288 update_state [0@1]: log[2]=[1, 'eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY']
+193169.215782555 update_state [0@1]: term[None]=1
+193169.215794937 update_state [0@1]: state[None]=FOLLOWER
+193169.215807566 update_state [0@1]: leader[None]=2
+193169.215819806 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.215832611 update_state [0@1]: log[3]=[1, 'nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME']
+193169.215845358 update_state [0@1]: term[None]=1
+193169.215857355 update_state [0@1]: state[None]=FOLLOWER
+193169.215869487 update_state [0@1]: leader[None]=2
+193169.215881577 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.215894192 update_state [0@1]: log[4]=[1, 'iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8']
+193169.21590636 update_state [0@1]: term[None]=1
+193169.21591848 update_state [0@1]: state[None]=FOLLOWER
+193169.215930697 update_state [0@1]: leader[None]=2
+193169.215942936 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.215955257 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193169.215974492 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193169.216000531 update_state [1@1]: term[None]=1
+193169.216014217 update_state [1@1]: state[None]=FOLLOWER
+193169.216026955 update_state [1@1]: leader[None]=2
+193169.216039401 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216051615 update_state [1@1]: log[1]=[1, 'JCpVHbKsPt1SPqsAaHxORz1zJ_Mpoic6WJMCr-PJwAk']
+193169.216064179 update_state [1@1]: term[None]=1
+193169.216076664 update_state [1@1]: state[None]=FOLLOWER
+193169.216088811 update_state [1@1]: leader[None]=2
+193169.216101119 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216113531 update_state [1@1]: log[2]=[1, 'eRuKA0UaLJqgmBwcJZ_nV_t_RDcG9S2cvXbWZxC0DMY']
+193169.216125805 update_state [1@1]: term[None]=1
+193169.216138019 update_state [1@1]: state[None]=FOLLOWER
+193169.216150377 update_state [1@1]: leader[None]=2
+193169.21616264 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216174784 update_state [1@1]: log[3]=[1, 'nox8G4CRiU_62RUaCNWYraeL8O40T8FzqJyECD2hbME']
+193169.216187307 update_state [1@1]: term[None]=1
+193169.216199361 update_state [1@1]: state[None]=FOLLOWER
+193169.216211425 update_state [1@1]: leader[None]=2
+193169.216223604 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216235658 update_state [1@1]: log[4]=[1, 'iKYwxsLLBjkV3XwyIaQMBYV4dmp4NiExZCUHSov1-l8']
+193169.216247874 update_state [1@1]: term[None]=1
+193169.216259938 update_state [1@1]: state[None]=FOLLOWER
+193169.216272005 update_state [1@1]: leader[None]=2
+193169.216284207 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216296677 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193169.216308947 update_state [1@1]: term[None]=1
+193169.216321115 update_state [1@1]: state[None]=FOLLOWER
+193169.216332911 update_state [1@1]: leader[None]=2
+193169.216344867 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216356989 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193169.216377333 0>STATE term="1"
+193169.216427109 0>STATE state="FOLLOWER"
+193169.216470605 0>STATE leader="2"
+193169.216527455 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193169.216642038 update_state [0@1]: term[None]=1
+193169.216663107 update_state [0@1]: state[None]=FOLLOWER
+193169.216677422 update_state [0@1]: leader[None]=2
+193169.216690306 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.216703946 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193169.216746611 2>STATE term="1"
+193169.216796889 2>STATE state="LEADER"
+193169.216840193 2>STATE leader="2"
+193169.21689847 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193169.216966339 2>STATE term="1"
+193169.217012081 2>STATE state="LEADER"
+193169.217055358 2>STATE leader="2"
+193169.217111636 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193169.217185573 update_state [2@1]: term[None]=1
+193169.217205139 update_state [2@1]: state[None]=LEADER
+193169.217219452 update_state [2@1]: leader[None]=2
+193169.217232268 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.217245422 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193169.217257996 update_state [2@1]: term[None]=1
+193169.217270233 update_state [2@1]: state[None]=LEADER
+193169.217282709 update_state [2@1]: leader[None]=2
+193169.217295202 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193169.217307608 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193170.210232774 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193170.210428442 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193170.210624074 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193170.210749484 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193170.212828589 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193170.212968886 0>STATE term="1"
+193170.213192489 0>STATE state="FOLLOWER"
+193170.213524775 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193170.213636898 update_state [0@1]: term[None]=1
+193170.213697105 update_state [0@1]: state[None]=FOLLOWER
+193170.213772553 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193170.213869251 1>STATE term="1"
+193170.214033819 1>STATE state="FOLLOWER"
+193170.214180335 1>STATE leader="2"
+193170.214377383 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193170.214753359 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193170.214856611 update_state [1@1]: term[None]=1
+193170.214910399 update_state [1@1]: state[None]=FOLLOWER
+193170.214954233 update_state [1@1]: leader[None]=2
+193170.214991119 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193170.215004214 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193170.215025866 0>STATE leader="2"
+193170.215092103 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193170.215196498 update_state [0@1]: leader[None]=2
+193170.215217859 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193170.215232528 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193170.215280562 2>STATE term="1"
+193170.215331849 2>STATE state="LEADER"
+193170.215377123 2>STATE leader="2"
+193170.215436448 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193170.215537509 update_state [2@1]: term[None]=1
+193170.215558715 update_state [2@1]: state[None]=LEADER
+193170.215573525 update_state [2@1]: leader[None]=2
+193170.215586926 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193170.215599999 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193170.215640995 2>STATE term="1"
+193170.215689093 2>STATE state="LEADER"
+193170.215731558 2>STATE leader="2"
+193170.215790313 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193170.215865091 update_state [2@1]: term[None]=1
+193170.215885026 update_state [2@1]: state[None]=LEADER
+193170.215899061 update_state [2@1]: leader[None]=2
+193170.215912186 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193170.215925103 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193171.211385303 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193171.211582813 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193171.211770494 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193171.211894073 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193171.213978406 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193171.214118042 0>STATE term="1"
+193171.214480392 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193171.21458918 update_state [0@1]: term[None]=1
+193171.214668352 0>STATE state="FOLLOWER"
+193171.214833158 0>STATE leader="2"
+193171.215043845 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193171.215307722 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193171.215416122 1>STATE term="1"
+193171.215566063 1>STATE state="FOLLOWER"
+193171.215704572 1>STATE leader="2"
+193171.215889692 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193171.216163739 update_state [0@1]: state[None]=FOLLOWER
+193171.216246226 update_state [0@1]: leader[None]=2
+193171.216297365 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193171.216338639 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193171.216359436 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193171.216386149 update_state [1@1]: term[None]=1
+193171.216400042 update_state [1@1]: state[None]=FOLLOWER
+193171.216412729 update_state [1@1]: leader[None]=2
+193171.216425606 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193171.216438059 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193171.216512929 2>STATE term="1"
+193171.21657862 2>STATE state="LEADER"
+193171.216626251 2>STATE leader="2"
+193171.216686817 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193171.216770313 update_state [2@1]: term[None]=1
+193171.216790919 update_state [2@1]: state[None]=LEADER
+193171.216805563 update_state [2@1]: leader[None]=2
+193171.216819013 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193171.216832172 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193171.21690333 2>STATE term="1"
+193171.216955008 2>STATE state="LEADER"
+193171.216999054 2>STATE leader="2"
+193171.217058395 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193171.217134017 update_state [2@1]: term[None]=1
+193171.217153025 update_state [2@1]: state[None]=LEADER
+193171.217166794 update_state [2@1]: leader[None]=2
+193171.217179797 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193171.217192596 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193172.212382855 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193172.212653803 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193172.212832043 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193172.212944915 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193172.21491848 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193172.21504881 0>STATE term="1"
+193172.21526493 0>STATE state="FOLLOWER"
+193172.215412227 0>STATE leader="2"
+193172.215599841 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193172.21598794 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193172.216091745 update_state [0@1]: term[None]=1
+193172.21613791 update_state [0@1]: state[None]=FOLLOWER
+193172.216167457 update_state [0@1]: leader[None]=2
+193172.216193598 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193172.216224983 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193172.216286987 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193172.216409905 1>STATE term="1"
+193172.216660063 1>STATE state="FOLLOWER"
+193172.21688471 1>STATE leader="2"
+193172.217374809 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193172.217539206 update_state [1@1]: term[None]=1
+193172.217562765 update_state [1@1]: state[None]=FOLLOWER
+193172.217582141 update_state [1@1]: leader[None]=2
+193172.217597983 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193172.217625108 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193172.21777998 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193172.217855982 2>STATE term="1"
+193172.217929405 2>STATE state="LEADER"
+193172.217994804 2>STATE leader="2"
+193172.218081211 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193172.218226747 update_state [2@1]: term[None]=1
+193172.218254816 update_state [2@1]: state[None]=LEADER
+193172.218273438 update_state [2@1]: leader[None]=2
+193172.218289271 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193172.218305565 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193172.218362803 2>STATE term="1"
+193172.218433235 2>STATE state="LEADER"
+193172.218496699 2>STATE leader="2"
+193172.218581226 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193172.218691001 update_state [2@1]: term[None]=1
+193172.218716031 update_state [2@1]: state[None]=LEADER
+193172.21873369 update_state [2@1]: leader[None]=2
+193172.218751698 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193172.218770378 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193173.213455977 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193173.213632754 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193173.21379127 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193173.213901571 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193173.216075691 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193173.216205988 1>STATE term="1"
+193173.216420238 1>STATE state="FOLLOWER"
+193173.216618047 1>STATE leader="2"
+193173.216831801 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193173.217079176 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193173.217154412 0>STATE term="1"
+193173.217287651 0>STATE state="FOLLOWER"
+193173.217412454 0>STATE leader="2"
+193173.217577139 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193173.217823048 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193173.217910048 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193173.217974585 update_state [1@1]: term[None]=1
+193173.218019828 update_state [1@1]: state[None]=FOLLOWER
+193173.218052012 update_state [1@1]: leader[None]=2
+193173.218082816 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193173.218113592 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193173.218154677 update_state [0@1]: term[None]=1
+193173.218212752 update_state [0@1]: state[None]=FOLLOWER
+193173.218248706 update_state [0@1]: leader[None]=2
+193173.218280658 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193173.218310932 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193173.219082887 2>STATE term="1"
+193173.219307282 2>STATE state="LEADER"
+193173.219461827 2>STATE leader="2"
+193173.219651578 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193173.21991336 update_state [2@1]: term[None]=1
+193173.219973039 update_state [2@1]: state[None]=LEADER
+193173.220007528 update_state [2@1]: leader[None]=2
+193173.220039348 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193173.220070228 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193173.220278958 2>STATE term="1"
+193173.220435585 2>STATE state="LEADER"
+193173.22060872 2>STATE leader="2"
+193173.220811638 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193173.221043337 update_state [2@1]: term[None]=1
+193173.221097951 update_state [2@1]: state[None]=LEADER
+193173.221134315 update_state [2@1]: leader[None]=2
+193173.221167607 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193173.221197869 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193174.21459426 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193174.214773541 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193174.21497306 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193174.215089143 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193174.217312969 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193174.217443552 0>STATE term="1"
+193174.217683437 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193174.217766275 1>STATE term="1"
+193174.217923876 1>STATE state="FOLLOWER"
+193174.218070948 1>STATE leader="2"
+193174.218270322 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193174.218599673 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193174.218690986 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193174.218762935 update_state [0@1]: term[None]=1
+193174.218809107 update_state [1@1]: term[None]=1
+193174.218843014 update_state [1@1]: state[None]=FOLLOWER
+193174.218879538 update_state [1@1]: leader[None]=2
+193174.218912997 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193174.218942559 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193174.21899508 0>STATE state="FOLLOWER"
+193174.219142284 0>STATE leader="2"
+193174.219333754 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193174.219575234 update_state [0@1]: state[None]=FOLLOWER
+193174.219628473 update_state [0@1]: leader[None]=2
+193174.219661766 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193174.219697112 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193174.220171973 2>STATE term="1"
+193174.22039409 2>STATE state="LEADER"
+193174.220549575 2>STATE leader="2"
+193174.220784351 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193174.221066487 update_state [2@1]: term[None]=1
+193174.221128488 update_state [2@1]: state[None]=LEADER
+193174.22116274 update_state [2@1]: leader[None]=2
+193174.221197592 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193174.221227691 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193174.221436801 2>STATE term="1"
+193174.22159282 2>STATE state="LEADER"
+193174.221722478 2>STATE leader="2"
+193174.221895014 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193174.222120443 update_state [2@1]: term[None]=1
+193174.222172177 update_state [2@1]: state[None]=LEADER
+193174.222209941 update_state [2@1]: leader[None]=2
+193174.222240178 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193174.222266636 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193175.215854752 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193175.21603504 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193175.216243392 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193175.216351212 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193175.218879731 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193175.21900912 1>STATE term="1"
+193175.219223037 1>STATE state="FOLLOWER"
+193175.219374037 1>STATE leader="2"
+193175.219752723 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193175.219852331 update_state [1@1]: term[None]=1
+193175.219898549 update_state [1@1]: state[None]=FOLLOWER
+193175.21993256 update_state [1@1]: leader[None]=2
+193175.219964415 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193175.220021227 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193175.220103493 0>STATE term="1"
+193175.220242309 0>STATE state="FOLLOWER"
+193175.220368139 0>STATE leader="2"
+193175.220539706 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193175.220917564 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193175.221007064 update_state [0@1]: term[None]=1
+193175.221050953 update_state [0@1]: state[None]=FOLLOWER
+193175.221085787 update_state [0@1]: leader[None]=2
+193175.221116375 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193175.221146465 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193175.221199124 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193175.221543232 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193175.221689158 2>STATE term="1"
+193175.221839887 2>STATE state="LEADER"
+193175.221967155 2>STATE leader="2"
+193175.222135607 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193175.222386712 update_state [2@1]: term[None]=1
+193175.222439724 update_state [2@1]: state[None]=LEADER
+193175.222470927 update_state [2@1]: leader[None]=2
+193175.222503041 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193175.22253437 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193175.222732577 2>STATE term="1"
+193175.22287929 2>STATE state="LEADER"
+193175.223004308 2>STATE leader="2"
+193175.223172607 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193175.223390691 update_state [2@1]: term[None]=1
+193175.223442042 update_state [2@1]: state[None]=LEADER
+193175.223475136 update_state [2@1]: leader[None]=2
+193175.223508 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193175.223539728 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193176.217085348 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193176.217262112 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193176.217442747 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193176.217557934 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193176.219736357 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193176.219865361 0>STATE term="1"
+193176.220076956 0>STATE state="FOLLOWER"
+193176.220226045 0>STATE leader="2"
+193176.220415606 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193176.220772922 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193176.22087414 update_state [0@1]: term[None]=1
+193176.22092178 update_state [0@1]: state[None]=FOLLOWER
+193176.220956571 update_state [0@1]: leader[None]=2
+193176.220985009 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193176.22101065 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193176.22106552 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193176.221147977 1>STATE term="1"
+193176.221292029 1>STATE state="FOLLOWER"
+193176.221417999 1>STATE leader="2"
+193176.221590197 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193176.221940698 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193176.222031329 update_state [1@1]: term[None]=1
+193176.222075036 update_state [1@1]: state[None]=FOLLOWER
+193176.222108845 update_state [1@1]: leader[None]=2
+193176.222139933 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193176.222171258 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193176.222392512 2>STATE term="1"
+193176.222553332 2>STATE state="LEADER"
+193176.222682681 2>STATE leader="2"
+193176.222852524 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193176.223094523 update_state [2@1]: term[None]=1
+193176.223147613 update_state [2@1]: state[None]=LEADER
+193176.223181831 update_state [2@1]: leader[None]=2
+193176.223212835 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193176.223247252 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193176.223447664 2>STATE term="1"
+193176.223595056 2>STATE state="LEADER"
+193176.22372178 2>STATE leader="2"
+193176.223892783 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193176.224040696 update_state [2@1]: term[None]=1
+193176.224056688 update_state [2@1]: state[None]=LEADER
+193176.224067655 update_state [2@1]: leader[None]=2
+193176.224078063 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193176.224088182 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193177.218130694 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193177.218296922 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193177.218445269 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193177.218555498 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193177.219736331 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193177.219778178 1>STATE term="1"
+193177.219857439 1>STATE state="FOLLOWER"
+193177.219905765 1>STATE leader="2"
+193177.219969422 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193177.220076931 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193177.220108579 update_state [1@1]: term[None]=1
+193177.220122821 update_state [1@1]: state[None]=FOLLOWER
+193177.22013421 update_state [1@1]: leader[None]=2
+193177.220145353 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193177.220155574 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193177.220173167 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193177.220200309 0>STATE term="1"
+193177.220245613 0>STATE state="FOLLOWER"
+193177.220285895 0>STATE leader="2"
+193177.220339354 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193177.220418331 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193177.220443953 update_state [0@1]: term[None]=1
+193177.220457079 update_state [0@1]: state[None]=FOLLOWER
+193177.220467759 update_state [0@1]: leader[None]=2
+193177.220478232 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193177.220488493 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193177.220591699 2>STATE term="1"
+193177.220644045 2>STATE state="LEADER"
+193177.220685394 2>STATE leader="2"
+193177.220740044 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193177.220818974 update_state [2@1]: term[None]=1
+193177.220835967 update_state [2@1]: state[None]=LEADER
+193177.220847484 update_state [2@1]: leader[None]=2
+193177.220857594 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193177.220868131 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193177.220933846 2>STATE term="1"
+193177.2209806 2>STATE state="LEADER"
+193177.221021159 2>STATE leader="2"
+193177.221075502 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193177.221146799 update_state [2@1]: term[None]=1
+193177.221163431 update_state [2@1]: state[None]=LEADER
+193177.221174719 update_state [2@1]: leader[None]=2
+193177.221187011 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193177.221202644 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193178.219254733 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193178.219444669 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193178.219605884 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193178.219712304 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193178.221811926 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193178.221938946 1>STATE term="1"
+193178.222152158 1>STATE state="FOLLOWER"
+193178.222422849 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193178.222518548 update_state [1@1]: term[None]=1
+193178.222564181 update_state [1@1]: state[None]=FOLLOWER
+193178.222618738 1>STATE leader="2"
+193178.222826429 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193178.22307669 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193178.223168167 0>STATE term="1"
+193178.223302374 0>STATE state="FOLLOWER"
+193178.223429013 0>STATE leader="2"
+193178.223597805 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193178.223852012 update_state [1@1]: leader[None]=2
+193178.223906764 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193178.223938211 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193178.223995982 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193178.224067259 update_state [0@1]: term[None]=1
+193178.224104576 update_state [0@1]: state[None]=FOLLOWER
+193178.224135451 update_state [0@1]: leader[None]=2
+193178.224164343 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193178.22419363 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193178.224404864 2>STATE term="1"
+193178.224589436 2>STATE state="LEADER"
+193178.22473208 2>STATE leader="2"
+193178.224906293 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193178.225160625 update_state [2@1]: term[None]=1
+193178.225248068 update_state [2@1]: state[None]=LEADER
+193178.225296106 update_state [2@1]: leader[None]=2
+193178.225326442 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193178.225354054 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193178.225566626 2>STATE term="1"
+193178.225724048 2>STATE state="LEADER"
+193178.225853055 2>STATE leader="2"
+193178.226022825 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193178.22624808 update_state [2@1]: term[None]=1
+193178.226302051 update_state [2@1]: state[None]=LEADER
+193178.226336473 update_state [2@1]: leader[None]=2
+193178.226367874 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193178.226397199 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193179.220338139 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193179.220518681 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193179.220723494 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193179.22083749 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193179.223065535 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193179.223242006 1>STATE term="1"
+193179.223547283 1>STATE state="FOLLOWER"
+193179.22378171 1>STATE leader="2"
+193179.224070262 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193179.224446398 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193179.224612061 0>STATE term="1"
+193179.224831154 0>STATE state="FOLLOWER"
+193179.225030811 0>STATE leader="2"
+193179.225307728 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193179.225696387 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193179.225816666 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193179.225915167 update_state [1@1]: term[None]=1
+193179.225985778 update_state [1@1]: state[None]=FOLLOWER
+193179.226039492 update_state [1@1]: leader[None]=2
+193179.226093191 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193179.226140275 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193179.22619187 update_state [0@1]: term[None]=1
+193179.226242887 update_state [0@1]: state[None]=FOLLOWER
+193179.226294585 update_state [0@1]: leader[None]=2
+193179.226345248 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193179.226398951 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193179.227113663 2>STATE term="1"
+193179.227229006 update_state [2@1]: term[None]=1
+193179.227266183 2>STATE state="LEADER"
+193179.227337788 2>STATE leader="2"
+193179.227427591 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193179.227549954 update_state [2@1]: state[None]=LEADER
+193179.22757594 update_state [2@1]: leader[None]=2
+193179.227594734 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193179.227612269 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193179.227709587 2>STATE term="1"
+193179.227782936 2>STATE state="LEADER"
+193179.227849271 2>STATE leader="2"
+193179.227934119 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193179.228043512 update_state [2@1]: term[None]=1
+193179.228068373 update_state [2@1]: state[None]=LEADER
+193179.228086127 update_state [2@1]: leader[None]=2
+193179.228102669 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193179.228119543 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193180.22134711 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193180.221508116 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193180.221654813 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193180.221761132 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193180.223882798 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193180.22403159 0>STATE term="1"
+193180.224266073 0>STATE state="FOLLOWER"
+193180.224431961 0>STATE leader="2"
+193180.22469309 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193180.225048529 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193180.225176519 update_state [0@1]: term[None]=1
+193180.225256061 update_state [0@1]: state[None]=FOLLOWER
+193180.225319513 update_state [0@1]: leader[None]=2
+193180.225356769 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193180.225383925 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193180.225444581 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193180.225532701 1>STATE term="1"
+193180.225687871 1>STATE state="FOLLOWER"
+193180.225825759 1>STATE leader="2"
+193180.226006451 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193180.22628891 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193180.226389521 update_state [1@1]: term[None]=1
+193180.226459672 update_state [1@1]: state[None]=FOLLOWER
+193180.226521434 update_state [1@1]: leader[None]=2
+193180.22655645 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193180.226584411 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193180.226816601 2>STATE term="1"
+193180.226980048 2>STATE state="LEADER"
+193180.227114741 2>STATE leader="2"
+193180.227293102 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193180.227540457 update_state [2@1]: term[None]=1
+193180.227595794 update_state [2@1]: state[None]=LEADER
+193180.227633853 update_state [2@1]: leader[None]=2
+193180.227665955 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193180.227698236 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193180.227909014 2>STATE term="1"
+193180.228061661 2>STATE state="LEADER"
+193180.228188936 2>STATE leader="2"
+193180.228365051 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193180.228619332 update_state [2@1]: term[None]=1
+193180.228677463 update_state [2@1]: state[None]=LEADER
+193180.228712425 update_state [2@1]: leader[None]=2
+193180.22874353 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193180.228774095 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193181.222437749 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193181.222615458 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193181.222789181 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193181.222905892 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193181.225106721 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193181.225239299 0>STATE term="1"
+193181.225452466 0>STATE state="FOLLOWER"
+193181.225596929 0>STATE leader="2"
+193181.225784983 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193181.226075295 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193181.22616001 1>STATE term="1"
+193181.226313531 1>STATE state="FOLLOWER"
+193181.226458003 1>STATE leader="2"
+193181.226642848 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193181.226913098 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193181.22701222 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193181.227086636 update_state [0@1]: term[None]=1
+193181.227139078 update_state [0@1]: state[None]=FOLLOWER
+193181.227182464 update_state [0@1]: leader[None]=2
+193181.227222848 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193181.227262078 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193181.227300793 update_state [1@1]: term[None]=1
+193181.227340026 update_state [1@1]: state[None]=FOLLOWER
+193181.227378167 update_state [1@1]: leader[None]=2
+193181.227415539 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193181.227453089 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193181.228356853 2>STATE term="1"
+193181.228545458 2>STATE state="LEADER"
+193181.228732238 2>STATE leader="2"
+193181.228924352 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193181.229192913 update_state [2@1]: term[None]=1
+193181.229260751 update_state [2@1]: state[None]=LEADER
+193181.229307517 update_state [2@1]: leader[None]=2
+193181.229349573 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193181.229392708 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193181.229615387 2>STATE term="1"
+193181.229781345 2>STATE state="LEADER"
+193181.229927623 2>STATE leader="2"
+193181.230119066 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193181.230360856 update_state [2@1]: term[None]=1
+193181.230425408 update_state [2@1]: state[None]=LEADER
+193181.230470695 update_state [2@1]: leader[None]=2
+193181.230512915 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193181.230554106 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193182.223626351 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193182.223822378 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193182.224017955 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193182.224138816 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193182.226336971 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193182.226469134 0>STATE term="1"
+193182.226681793 0>STATE state="FOLLOWER"
+193182.226832432 0>STATE leader="2"
+193182.227150629 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193182.227248864 update_state [0@1]: term[None]=1
+193182.227294454 update_state [0@1]: state[None]=FOLLOWER
+193182.227326761 update_state [0@1]: leader[None]=2
+193182.227354812 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193182.227405225 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193182.227651405 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193182.227743328 1>STATE term="1"
+193182.227877129 1>STATE state="FOLLOWER"
+193182.228001584 1>STATE leader="2"
+193182.228172558 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193182.22842043 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193182.228496463 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193182.228597144 update_state [1@1]: term[None]=1
+193182.228641467 update_state [1@1]: state[None]=FOLLOWER
+193182.228666684 update_state [1@1]: leader[None]=2
+193182.228690889 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193182.228715889 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193182.228934544 2>STATE term="1"
+193182.229089653 2>STATE state="LEADER"
+193182.229214692 2>STATE leader="2"
+193182.229381229 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193182.229617961 update_state [2@1]: term[None]=1
+193182.229671553 update_state [2@1]: state[None]=LEADER
+193182.229700817 update_state [2@1]: leader[None]=2
+193182.229731567 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193182.229760251 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193182.229977126 2>STATE term="1"
+193182.230159036 2>STATE state="LEADER"
+193182.230360929 2>STATE leader="2"
+193182.230554406 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193182.230779537 update_state [2@1]: term[None]=1
+193182.230837689 update_state [2@1]: state[None]=LEADER
+193182.230868992 update_state [2@1]: leader[None]=2
+193182.23090174 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193182.230933483 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193183.224908129 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193183.225079414 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193183.225289004 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193183.225405681 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193183.227628135 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193183.22775862 1>STATE term="1"
+193183.227974574 1>STATE state="FOLLOWER"
+193183.228166161 1>STATE leader="2"
+193183.228372958 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193183.228672068 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193183.228756414 0>STATE term="1"
+193183.228899067 0>STATE state="FOLLOWER"
+193183.229025672 0>STATE leader="2"
+193183.229201278 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193183.229454827 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193183.229539463 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193183.229601952 update_state [1@1]: term[None]=1
+193183.229647739 update_state [1@1]: state[None]=FOLLOWER
+193183.229681894 update_state [1@1]: leader[None]=2
+193183.229712929 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193183.229744661 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193183.229774421 update_state [0@1]: term[None]=1
+193183.22980343 update_state [0@1]: state[None]=FOLLOWER
+193183.229834482 update_state [0@1]: leader[None]=2
+193183.229864566 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193183.229893831 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193183.23072933 2>STATE term="1"
+193183.230954204 2>STATE state="LEADER"
+193183.231112302 2>STATE leader="2"
+193183.231304149 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193183.231579627 update_state [2@1]: term[None]=1
+193183.231639361 update_state [2@1]: state[None]=LEADER
+193183.231675955 update_state [2@1]: leader[None]=2
+193183.23170447 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193183.23173106 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193183.231941981 2>STATE term="1"
+193183.232098213 2>STATE state="LEADER"
+193183.232225588 2>STATE leader="2"
+193183.2323954 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193183.232657093 update_state [2@1]: term[None]=1
+193183.232713905 update_state [2@1]: state[None]=LEADER
+193183.232750156 update_state [2@1]: leader[None]=2
+193183.232781516 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193183.232811344 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193184.225712909 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193184.225809337 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193184.22588769 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193184.225938249 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193184.226929098 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193184.226977332 0>STATE term="1"
+193184.227087523 0>STATE state="FOLLOWER"
+193184.227134179 0>STATE leader="2"
+193184.227197979 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193184.22731453 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193184.227346516 update_state [0@1]: term[None]=1
+193184.227361539 update_state [0@1]: state[None]=FOLLOWER
+193184.227372206 update_state [0@1]: leader[None]=2
+193184.227382042 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193184.227391861 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193184.22740912 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193184.227434725 1>STATE term="1"
+193184.227479571 1>STATE state="FOLLOWER"
+193184.22751938 1>STATE leader="2"
+193184.227573499 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193184.227652322 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193184.227677892 update_state [1@1]: term[None]=1
+193184.227690323 update_state [1@1]: state[None]=FOLLOWER
+193184.227700152 update_state [1@1]: leader[None]=2
+193184.227710045 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193184.227719665 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193184.227810786 2>STATE term="1"
+193184.227888664 update_state [2@1]: term[None]=1
+193184.227928487 2>STATE state="LEADER"
+193184.227972012 2>STATE leader="2"
+193184.228027039 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193184.22810382 update_state [2@1]: state[None]=LEADER
+193184.228120698 update_state [2@1]: leader[None]=2
+193184.228132123 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193184.228142265 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193184.228205344 2>STATE term="1"
+193184.228251043 2>STATE state="LEADER"
+193184.228289929 2>STATE leader="2"
+193184.228343125 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193184.228412581 update_state [2@1]: term[None]=1
+193184.228428433 update_state [2@1]: state[None]=LEADER
+193184.228439428 update_state [2@1]: leader[None]=2
+193184.228449188 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193184.228458833 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193185.226741745 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193185.226914375 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193185.227092704 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193185.227207199 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193185.229412499 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193185.229596756 0>STATE term="1"
+193185.229897475 0>STATE state="FOLLOWER"
+193185.230110835 0>STATE leader="2"
+193185.230398646 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193185.230771036 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193185.230886102 1>STATE term="1"
+193185.231099498 1>STATE state="FOLLOWER"
+193185.23130478 1>STATE leader="2"
+193185.231569052 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193185.231948182 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193185.232081604 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193185.232178825 update_state [0@1]: term[None]=1
+193185.232247209 update_state [0@1]: state[None]=FOLLOWER
+193185.232299688 update_state [0@1]: leader[None]=2
+193185.232354938 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193185.232408503 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193185.232457831 update_state [1@1]: term[None]=1
+193185.232509696 update_state [1@1]: state[None]=FOLLOWER
+193185.232596519 update_state [1@1]: leader[None]=2
+193185.232657133 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193185.232718591 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193185.233495967 2>STATE term="1"
+193185.233870051 update_state [2@1]: term[None]=1
+193185.23398373 2>STATE state="LEADER"
+193185.234203344 2>STATE leader="2"
+193185.234486522 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193185.234937611 update_state [2@1]: state[None]=LEADER
+193185.235019818 update_state [2@1]: leader[None]=2
+193185.235079524 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193185.235132533 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193185.235297566 2>STATE term="1"
+193185.235525774 2>STATE state="LEADER"
+193185.235737088 2>STATE leader="2"
+193185.236006404 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193185.23634384 update_state [2@1]: term[None]=1
+193185.236440439 update_state [2@1]: state[None]=LEADER
+193185.236496151 update_state [2@1]: leader[None]=2
+193185.236545173 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193185.236633698 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193186.22772164 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193186.227895465 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193186.228065554 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193186.228179309 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193186.230282162 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193186.230412527 0>STATE term="1"
+193186.230621246 0>STATE state="FOLLOWER"
+193186.230766756 0>STATE leader="2"
+193186.230954528 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193186.231105553 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193186.231134796 update_state [0@1]: term[None]=1
+193186.231147181 update_state [0@1]: state[None]=FOLLOWER
+193186.23115844 update_state [0@1]: leader[None]=2
+193186.231168014 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193186.231177012 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193186.231193047 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193186.231215927 1>STATE term="1"
+193186.231255461 1>STATE state="FOLLOWER"
+193186.231291512 1>STATE leader="2"
+193186.231341167 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193186.231414823 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193186.231438633 update_state [1@1]: term[None]=1
+193186.231449826 update_state [1@1]: state[None]=FOLLOWER
+193186.231459128 update_state [1@1]: leader[None]=2
+193186.231467682 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193186.231476648 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193186.231557392 2>STATE term="1"
+193186.231602768 2>STATE state="LEADER"
+193186.23164012 2>STATE leader="2"
+193186.231689698 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193186.231759677 update_state [2@1]: term[None]=1
+193186.231775365 update_state [2@1]: state[None]=LEADER
+193186.231784957 update_state [2@1]: leader[None]=2
+193186.231793958 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193186.231803291 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193186.231863287 2>STATE term="1"
+193186.231905753 2>STATE state="LEADER"
+193186.231955352 2>STATE leader="2"
+193186.232001584 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193186.232061903 update_state [2@1]: term[None]=1
+193186.232075931 update_state [2@1]: state[None]=LEADER
+193186.232085601 update_state [2@1]: leader[None]=2
+193186.232094199 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193186.232102975 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193187.22902584 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193187.229311298 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193187.229444405 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193187.229575146 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193187.231525979 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193187.231657766 0>STATE term="1"
+193187.231869158 0>STATE state="FOLLOWER"
+193187.232015122 0>STATE leader="2"
+193187.232203208 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193187.232526332 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193187.232661157 update_state [0@1]: term[None]=1
+193187.232710982 update_state [0@1]: state[None]=FOLLOWER
+193187.232761233 update_state [0@1]: leader[None]=2
+193187.232806329 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193187.232846557 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193187.232915436 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193187.233009444 1>STATE term="1"
+193187.233166281 1>STATE state="FOLLOWER"
+193187.233306405 1>STATE leader="2"
+193187.23349758 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193187.233783793 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193187.233880486 update_state [1@1]: term[None]=1
+193187.233929597 update_state [1@1]: state[None]=FOLLOWER
+193187.233971019 update_state [1@1]: leader[None]=2
+193187.234009915 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193187.234053028 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193187.234287541 2>STATE term="1"
+193187.234457409 2>STATE state="LEADER"
+193187.234588244 2>STATE leader="2"
+193187.234764417 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193187.235007362 update_state [2@1]: term[None]=1
+193187.235059521 update_state [2@1]: state[None]=LEADER
+193187.235088724 update_state [2@1]: leader[None]=2
+193187.235119227 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193187.235151027 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193187.235355197 2>STATE term="1"
+193187.235503083 2>STATE state="LEADER"
+193187.235625335 2>STATE leader="2"
+193187.235794303 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193187.236009965 update_state [2@1]: term[None]=1
+193187.236059548 update_state [2@1]: state[None]=LEADER
+193187.236089086 update_state [2@1]: leader[None]=2
+193187.23613242 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193187.2361773 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193188.230087366 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193188.230277747 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193188.230471034 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193188.230598468 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193188.232865404 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193188.233029021 1>STATE term="1"
+193188.233322659 1>STATE state="FOLLOWER"
+193188.233520694 1>STATE leader="2"
+193188.233826226 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193188.234161824 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193188.234252107 0>STATE term="1"
+193188.234454769 0>STATE state="FOLLOWER"
+193188.234653311 0>STATE leader="2"
+193188.234938936 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193188.235290389 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193188.235383771 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193188.23547354 update_state [1@1]: term[None]=1
+193188.235542644 update_state [1@1]: state[None]=FOLLOWER
+193188.235598941 update_state [1@1]: leader[None]=2
+193188.235651831 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193188.235705824 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193188.235757897 update_state [0@1]: term[None]=1
+193188.235808332 update_state [0@1]: state[None]=FOLLOWER
+193188.235858864 update_state [0@1]: leader[None]=2
+193188.235911624 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193188.235970814 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193188.236590506 2>STATE term="1"
+193188.236824649 2>STATE state="LEADER"
+193188.236975684 2>STATE leader="2"
+193188.237158643 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193188.237439781 update_state [2@1]: term[None]=1
+193188.237501946 update_state [2@1]: state[None]=LEADER
+193188.237534524 update_state [2@1]: leader[None]=2
+193188.237566614 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193188.237597974 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193188.237817999 2>STATE term="1"
+193188.23797427 2>STATE state="LEADER"
+193188.238103879 2>STATE leader="2"
+193188.23828004 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193188.238508266 update_state [2@1]: term[None]=1
+193188.238560847 update_state [2@1]: state[None]=LEADER
+193188.238590521 update_state [2@1]: leader[None]=2
+193188.238619056 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193188.238649325 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193189.231881703 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193189.232059349 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193189.23222284 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193189.232340247 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193189.234378843 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193189.234523476 0>STATE term="1"
+193189.234773777 0>STATE state="FOLLOWER"
+193189.234931664 0>STATE leader="2"
+193189.235131866 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193189.235450746 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193189.235485856 update_state [0@1]: term[None]=1
+193189.235503014 update_state [0@1]: state[None]=FOLLOWER
+193189.23551683 update_state [0@1]: leader[None]=2
+193189.235529882 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193189.235542932 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193189.235588979 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193189.235625741 1>STATE term="1"
+193189.235684541 1>STATE state="FOLLOWER"
+193189.235741439 1>STATE leader="2"
+193189.235818548 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193189.235912028 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193189.235938833 update_state [1@1]: term[None]=1
+193189.235950708 update_state [1@1]: state[None]=FOLLOWER
+193189.235962174 update_state [1@1]: leader[None]=2
+193189.235971554 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193189.235980901 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193189.236051038 2>STATE term="1"
+193189.236098223 2>STATE state="LEADER"
+193189.236136899 2>STATE leader="2"
+193189.236189558 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193189.236264678 update_state [2@1]: term[None]=1
+193189.236281058 update_state [2@1]: state[None]=LEADER
+193189.236291567 update_state [2@1]: leader[None]=2
+193189.236300528 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193189.236309857 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193189.236371396 2>STATE term="1"
+193189.236415578 2>STATE state="LEADER"
+193189.236453175 2>STATE leader="2"
+193189.236503182 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193189.23658539 update_state [2@1]: term[None]=1
+193189.236602882 update_state [2@1]: state[None]=LEADER
+193189.236613497 update_state [2@1]: leader[None]=2
+193189.2366229 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193189.236632063 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193190.232918692 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193190.233083506 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193190.23323048 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193190.23333586 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193190.235951695 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193190.236078945 0>STATE term="1"
+193190.236288359 0>STATE state="FOLLOWER"
+193190.236432671 0>STATE leader="2"
+193190.236676087 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193190.237006303 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193190.237104037 update_state [0@1]: term[None]=1
+193190.237154848 update_state [0@1]: state[None]=FOLLOWER
+193190.237191932 update_state [0@1]: leader[None]=2
+193190.237222022 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193190.237252425 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193190.237308022 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193190.237429481 1>STATE term="1"
+193190.23758336 1>STATE state="FOLLOWER"
+193190.237709449 1>STATE leader="2"
+193190.237881953 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193190.23815751 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193190.238247009 update_state [1@1]: term[None]=1
+193190.238290778 update_state [1@1]: state[None]=FOLLOWER
+193190.238322288 update_state [1@1]: leader[None]=2
+193190.238349934 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193190.238376466 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193190.23859331 2>STATE term="1"
+193190.238746545 2>STATE state="LEADER"
+193190.238872549 2>STATE leader="2"
+193190.239040946 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193190.239280103 update_state [2@1]: term[None]=1
+193190.23933491 update_state [2@1]: state[None]=LEADER
+193190.23936801 update_state [2@1]: leader[None]=2
+193190.239398464 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193190.239428813 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193190.239622764 2>STATE term="1"
+193190.23976937 2>STATE state="LEADER"
+193190.239894407 2>STATE leader="2"
+193190.240061103 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193190.240277435 update_state [2@1]: term[None]=1
+193190.240328798 update_state [2@1]: state[None]=LEADER
+193190.240358498 update_state [2@1]: leader[None]=2
+193190.240389736 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193190.240421724 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193191.234096147 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193191.234274235 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193191.234442559 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193191.234552961 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193191.236739068 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193191.236866711 0>STATE term="1"
+193191.237075991 0>STATE state="FOLLOWER"
+193191.237220694 0>STATE leader="2"
+193191.237413297 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193191.237660242 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193191.237736576 1>STATE term="1"
+193191.23786576 1>STATE state="FOLLOWER"
+193191.237987083 1>STATE leader="2"
+193191.238156196 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193191.238403137 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193191.238488662 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193191.238556773 update_state [0@1]: term[None]=1
+193191.238596633 update_state [0@1]: state[None]=FOLLOWER
+193191.238628506 update_state [0@1]: leader[None]=2
+193191.238654626 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193191.238681518 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193191.238707337 update_state [1@1]: term[None]=1
+193191.238737503 update_state [1@1]: state[None]=FOLLOWER
+193191.238769128 update_state [1@1]: leader[None]=2
+193191.238798033 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193191.238827811 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193191.23963263 2>STATE term="1"
+193191.239850124 2>STATE state="LEADER"
+193191.24000285 2>STATE leader="2"
+193191.240283909 update_state [2@1]: term[None]=1
+193191.24034328 update_state [2@1]: state[None]=LEADER
+193191.240375906 update_state [2@1]: leader[None]=2
+193191.240407396 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193191.240464736 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193191.240820008 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193191.240962178 2>STATE term="1"
+193191.24111121 2>STATE state="LEADER"
+193191.241239691 2>STATE leader="2"
+193191.2414127 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193191.241635826 update_state [2@1]: term[None]=1
+193191.241687409 update_state [2@1]: state[None]=LEADER
+193191.24172164 update_state [2@1]: leader[None]=2
+193191.241750036 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193191.241782253 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193192.234995697 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193192.235162372 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193192.235311581 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193192.235419599 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193192.237635003 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193192.237775036 0>STATE term="1"
+193192.237986813 0>STATE state="FOLLOWER"
+193192.238136966 0>STATE leader="2"
+193192.238330105 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193192.238655934 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193192.238762708 update_state [0@1]: term[None]=1
+193192.23880988 update_state [0@1]: state[None]=FOLLOWER
+193192.238841075 update_state [0@1]: leader[None]=2
+193192.238867047 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193192.238892898 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193192.238966178 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193192.239105636 1>STATE term="1"
+193192.239258767 1>STATE state="FOLLOWER"
+193192.239385007 1>STATE leader="2"
+193192.239559867 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193192.239854728 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193192.240003659 update_state [1@1]: term[None]=1
+193192.240074422 update_state [1@1]: state[None]=FOLLOWER
+193192.240111613 update_state [1@1]: leader[None]=2
+193192.240142026 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193192.240171812 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193192.240396837 2>STATE term="1"
+193192.240577072 2>STATE state="LEADER"
+193192.240723452 2>STATE leader="2"
+193192.240902561 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193192.24115432 update_state [2@1]: term[None]=1
+193192.241206943 update_state [2@1]: state[None]=LEADER
+193192.241237882 update_state [2@1]: leader[None]=2
+193192.24126807 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193192.241299506 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193192.241510598 2>STATE term="1"
+193192.241658955 2>STATE state="LEADER"
+193192.241786419 2>STATE leader="2"
+193192.241998398 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193192.242266364 update_state [2@1]: term[None]=1
+193192.242321558 update_state [2@1]: state[None]=LEADER
+193192.242354687 update_state [2@1]: leader[None]=2
+193192.242382072 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193192.242411915 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193193.236141434 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193193.236339717 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193193.236519746 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193193.236683829 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193193.23929626 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193193.239451776 1>STATE term="1"
+193193.239901668 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193193.240021337 update_state [1@1]: term[None]=1
+193193.240102835 1>STATE state="FOLLOWER"
+193193.240283016 1>STATE leader="2"
+193193.24051169 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193193.240915903 update_state [1@1]: state[None]=FOLLOWER
+193193.240992287 update_state [1@1]: leader[None]=2
+193193.241033967 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193193.241066289 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193193.24112736 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193193.241226463 0>STATE term="1"
+193193.241393083 0>STATE state="FOLLOWER"
+193193.241545302 0>STATE leader="2"
+193193.241748056 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193193.242258145 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193193.242421771 update_state [0@1]: term[None]=1
+193193.242485049 update_state [0@1]: state[None]=FOLLOWER
+193193.242523613 update_state [0@1]: leader[None]=2
+193193.242558426 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193193.24259246 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193193.242850751 2>STATE term="1"
+193193.243034378 2>STATE state="LEADER"
+193193.243186111 2>STATE leader="2"
+193193.243388056 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193193.243678609 update_state [2@1]: term[None]=1
+193193.243743774 update_state [2@1]: state[None]=LEADER
+193193.243784474 update_state [2@1]: leader[None]=2
+193193.243816696 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193193.24385422 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193193.244159828 2>STATE term="1"
+193193.244314651 2>STATE state="LEADER"
+193193.244440553 2>STATE leader="2"
+193193.244646693 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193193.244878545 update_state [2@1]: term[None]=1
+193193.244932139 update_state [2@1]: state[None]=LEADER
+193193.244961904 update_state [2@1]: leader[None]=2
+193193.244993622 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193193.245021481 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193194.237428177 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193194.237619277 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193194.237795575 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193194.237927185 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193194.240078913 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193194.240207213 0>STATE term="1"
+193194.240548522 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193194.240699134 update_state [0@1]: term[None]=1
+193194.240772663 0>STATE state="FOLLOWER"
+193194.240945645 0>STATE leader="2"
+193194.241244674 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193194.241616681 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193194.241762277 1>STATE term="1"
+193194.241973301 1>STATE state="FOLLOWER"
+193194.242122908 1>STATE leader="2"
+193194.242308958 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193194.242569938 update_state [0@1]: state[None]=FOLLOWER
+193194.242629205 update_state [0@1]: leader[None]=2
+193194.24267888 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193194.24272257 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193194.242790683 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193194.242873618 update_state [1@1]: term[None]=1
+193194.242916017 update_state [1@1]: state[None]=FOLLOWER
+193194.242955894 update_state [1@1]: leader[None]=2
+193194.242998189 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193194.243053738 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193194.243390388 2>STATE term="1"
+193194.243631305 2>STATE state="LEADER"
+193194.243844582 2>STATE leader="2"
+193194.244072514 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193194.244338499 update_state [2@1]: term[None]=1
+193194.244395824 update_state [2@1]: state[None]=LEADER
+193194.244427875 update_state [2@1]: leader[None]=2
+193194.2444595 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193194.244492431 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193194.244744928 2>STATE term="1"
+193194.244906885 2>STATE state="LEADER"
+193194.245034878 2>STATE leader="2"
+193194.245203691 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193194.245425603 update_state [2@1]: term[None]=1
+193194.245478382 update_state [2@1]: state[None]=LEADER
+193194.245509684 update_state [2@1]: leader[None]=2
+193194.245542717 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193194.245573633 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193195.237816954 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193195.237893628 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193195.237935999 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193195.237963941 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193195.238850538 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193195.238887548 1>STATE term="1"
+193195.238982918 1>STATE state="FOLLOWER"
+193195.239037171 1>STATE leader="2"
+193195.239085051 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193195.239171658 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193195.239197132 update_state [1@1]: term[None]=1
+193195.239210316 update_state [1@1]: state[None]=FOLLOWER
+193195.239218211 update_state [1@1]: leader[None]=2
+193195.23922548 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193195.239233553 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193195.239251074 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193195.239277968 0>STATE term="1"
+193195.239325772 0>STATE state="FOLLOWER"
+193195.239371031 0>STATE leader="2"
+193195.239434938 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193195.239525226 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193195.239547175 update_state [0@1]: term[None]=1
+193195.239557705 update_state [0@1]: state[None]=FOLLOWER
+193195.239567151 update_state [0@1]: leader[None]=2
+193195.239579223 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193195.239591948 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193195.239665635 2>STATE term="1"
+193195.23972097 2>STATE state="LEADER"
+193195.239769079 2>STATE leader="2"
+193195.239868792 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193195.239948143 update_state [2@1]: term[None]=1
+193195.239960974 update_state [2@1]: state[None]=LEADER
+193195.23996877 update_state [2@1]: leader[None]=2
+193195.239975089 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193195.239981051 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193195.240028365 2>STATE term="1"
+193195.240061344 2>STATE state="LEADER"
+193195.240089034 2>STATE leader="2"
+193195.240126346 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193195.240174623 update_state [2@1]: term[None]=1
+193195.240185741 update_state [2@1]: state[None]=LEADER
+193195.240193522 update_state [2@1]: leader[None]=2
+193195.240200454 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193195.240207261 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193196.239000839 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193196.239207699 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193196.239393611 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193196.239514897 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193196.241987418 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193196.242139634 0>STATE term="1"
+193196.242381122 0>STATE state="FOLLOWER"
+193196.242551699 0>STATE leader="2"
+193196.2427728 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193196.243149777 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193196.243265777 update_state [0@1]: term[None]=1
+193196.243318757 update_state [0@1]: state[None]=FOLLOWER
+193196.243356036 update_state [0@1]: leader[None]=2
+193196.243385934 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193196.243424411 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193196.24351516 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193196.243663856 1>STATE term="1"
+193196.243918971 1>STATE state="FOLLOWER"
+193196.244163616 1>STATE leader="2"
+193196.244495447 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193196.244956956 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193196.245073781 update_state [1@1]: term[None]=1
+193196.24512838 update_state [1@1]: state[None]=FOLLOWER
+193196.245168832 update_state [1@1]: leader[None]=2
+193196.245199525 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193196.245236511 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193196.245616052 2>STATE term="1"
+193196.245899193 2>STATE state="LEADER"
+193196.246180838 2>STATE leader="2"
+193196.246479359 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193196.24679991 update_state [2@1]: term[None]=1
+193196.246869664 update_state [2@1]: state[None]=LEADER
+193196.246915732 update_state [2@1]: leader[None]=2
+193196.246952664 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193196.246988327 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193196.247240352 2>STATE term="1"
+193196.247420036 2>STATE state="LEADER"
+193196.247571624 2>STATE leader="2"
+193196.247769086 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193196.248028687 update_state [2@1]: term[None]=1
+193196.248088844 update_state [2@1]: state[None]=LEADER
+193196.248123167 update_state [2@1]: leader[None]=2
+193196.24815805 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193196.248192441 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193197.239547882 2>SEND 0 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193197.239617623 2>SEND 1 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193197.239696093 0<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193197.239735982 1<RECEIVE 2 ${"sender": 2, "term": 1, "prev_index": 4, "prev_term": 1, "entries": [], "commit_index": 4, "msgSignature": 4}
+193197.240586577 0>SEND 2 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193197.240635768 0>STATE term="1"
+193197.24072302 0>STATE state="FOLLOWER"
+193197.240777395 0>STATE leader="2"
+193197.240849073 0>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193197.240973062 2<RECEIVE 0 ${"sender": 0, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193197.241010238 update_state [0@1]: term[None]=1
+193197.241027997 update_state [0@1]: state[None]=FOLLOWER
+193197.241040241 update_state [0@1]: leader[None]=2
+193197.241051417 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193197.241062971 update_state [0@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193197.241084305 1>SEND 2 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193197.241115376 1>STATE term="1"
+193197.241177397 1>STATE state="FOLLOWER"
+193197.241230848 1>STATE leader="2"
+193197.24130458 1>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193197.2414148 2<RECEIVE 1 ${"sender": 1, "term": 1, "success": true, "match_index": 4, "msgSignature": 5}
+193197.241453823 update_state [1@1]: term[None]=1
+193197.241472346 update_state [1@1]: state[None]=FOLLOWER
+193197.241488082 update_state [1@1]: leader[None]=2
+193197.241503064 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193197.241517265 update_state [1@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193197.241625665 2>STATE term="1"
+193197.241690131 2>STATE state="LEADER"
+193197.241747716 2>STATE leader="2"
+193197.241822256 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193197.241948516 update_state [2@1]: term[None]=1
+193197.241977023 update_state [2@1]: state[None]=LEADER
+193197.241995178 update_state [2@1]: leader[None]=2
+193197.242011235 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193197.242027448 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+193197.242117329 2>STATE term="1"
+193197.242182673 2>STATE state="LEADER"
+193197.242240191 2>STATE leader="2"
+193197.242333466 2>STATE log[5]=[1, "EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g"]
+193197.242430208 update_state [2@1]: term[None]=1
+193197.242454871 update_state [2@1]: state[None]=LEADER
+193197.242470953 update_state [2@1]: leader[None]=2
+193197.24248567 Leaders: {1: '2'} normal_op: defaultdict(<class 'set'>, {1: {'0', '1', '2'}})
+193197.242500689 update_state [2@1]: log[5]=[1, 'EHugAfpq7NYk0OBuN-CGpeE2M8reebiC1nEKOp8o71g']
+Traceback (most recent call last):
+  File "/home/subhajit/PycharmProjects/pythonProject/DistributedSystem/MP2Raft2/raft_log_follower_failure_test.py", line 80, in <module>
+    asyncio.run(raft_test.run_test(main))
+  File "/usr/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/home/subhajit/PycharmProjects/pythonProject/DistributedSystem/MP2Raft2/raft_test.py", line 215, in run_test
+    await test_function(n, group)
+  File "/home/subhajit/PycharmProjects/pythonProject/DistributedSystem/MP2Raft2/raft_log_follower_failure_test.py", line 30, in main
+    await group.wait_predicate(leader_committed)
+  File "/home/subhajit/PycharmProjects/pythonProject/DistributedSystem/MP2Raft2/raft_test.py", line 50, in wait_predicate
+    raise RuntimeError("Timeout occurred in wait_predicate")
+RuntimeError: Timeout occurred in wait_predicate
